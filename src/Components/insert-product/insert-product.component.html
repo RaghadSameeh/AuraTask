@@ -1,0 +1,28 @@
+<section class="container py-4">
+  
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="py-2">
+      <label for="name" class="form-label">Name:</label>
+      <input type="text" id="name" formControlName="name" class="form-control">
+      <div *ngIf="productForm.get('name')?.hasError('required') && productForm.get('name')"  style="color:red;">
+        Name is required.
+      </div>
+      <div *ngIf="productForm.get('name')?.hasError('maxlength') && productForm.get('name')"  style="color:red;">
+        Maximum length is 15 characters.
+      </div>
+    </div>
+    <div class="py-2">
+      <label class="form-label">Status:</label>
+      <input type="radio" id="activated" formControlName="activated" [value]="true">
+      <label for="activated" class="form-label px-2">Activated</label>
+      <input type="radio" id="notActivated" formControlName="activated" [value]="false" >
+      <label for="notActivated" class="form-label px-2">Not Activated</label>
+  </div>
+  <div *ngIf="productForm.get('activated')?.hasError('required') && productForm.get('activated')" style="color:red;">
+      Status is required.
+  </div>
+
+  <button type="submit" class="btn btn-primary mb-3">Add Product</button>
+  </form>
+</section>
+  
